@@ -1,0 +1,41 @@
+%YAML 1.2
+
+name: Flip
+file_extensions: [flip]
+scope: source.flip
+
+contexts:
+  main:
+    - match: '//'
+      push: comment_sl
+    - match: '/\*'
+      push: comment_ml
+    - match: \b(model|class|version|enum|typealias|signal|extends|abstract|invariant|return)\b
+      scope: keyword.flip
+    - match: \b(self)\b
+      scope: variable.language.flip
+    - match: \b(Array|Bool|Blob|Collection|Float|Int|Message|Map|ObjectRef|Optional|String|Variant|Vector)\b
+      scope: entity.name.type.flip
+    - match: '"'
+      push: string
+    - match: "[A-Z]\\w*"
+      scope: entity.name.class.flip
+    - match: "[a-zA-Z]\\w*"
+      scope: variable.other.member.flip
+
+  comment_sl:
+    - meta_scope: comment.line
+    - match: '\n|\r'
+      pop: true
+
+  comment_ml:
+    - meta_scope: comment.block
+    - match: '\*/'
+      pop: true
+
+  string:
+    - meta_scope: string.quoted.double.c
+    - match: \\.
+      scope: constant.character.escape.c
+    - match: '"'
+      pop: true
