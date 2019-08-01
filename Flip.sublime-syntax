@@ -14,7 +14,7 @@ contexts:
       scope: keyword.flip
     - match: \b(self)\b
       scope: variable.language.flip
-    - match: \b(Array|Bool|Blob|Collection|Float|Int|Message|Map|ObjectRef|Optional|String|Variant|Vector)\b
+    - match: \b(Array|Bool|Blob|Collection|Float|Float32|Float64|Int|Message|Map|ObjectRef|Optional|String|Variant|Vector|FixedSizeArray)\b
       scope: entity.name.type.flip
     - match: '"'
       push: string
@@ -22,6 +22,8 @@ contexts:
       scope: entity.name.class.flip
     - match: "[a-zA-Z]\\w*"
       scope: variable.other.member.flip
+    - match: \b[0-9]+\b
+      scope: constant.numeric.c
 
   comment_sl:
     - meta_scope: comment.line
