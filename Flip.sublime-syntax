@@ -10,8 +10,14 @@ contexts:
       push: comment_sl
     - match: '/\*'
       push: comment_ml
-    - match: \b(model|class|version|enum|typealias|signal|extends|abstract|invariant|return)\b
-      scope: keyword.flip
+    - match: \b(model|version|signal|invariant)\b
+      scope: keyword.other.flip
+    - match: \b(return)\b
+      scope: keyword.control.flip
+    - match: \b(class|data|enum|typealias)\b
+      scope: storage.type.flip
+    - match: \b(abstract|extends)\b
+      scope: storage.modifier.flip
     - match: \b(self)\b
       scope: variable.language.flip
     - match: \b(Array|Bool|Blob|Collection|Float|Float32|Float64|Int|Message|Map|ObjectRef|Optional|String|Variant|Vector|FixedSizeArray)\b
